@@ -5,7 +5,7 @@ class LocalStorageUtil {
             The constructor method is used to initialize the LocalStorageUtil class.
             It sets an instance variable keyName with the value "products". This variable represents the key under which data will be stored in the localStorage. */
     constructor() {
-        this.keyName = "products";
+        this.keyName = 'products';
     }
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -30,7 +30,7 @@ class LocalStorageUtil {
         let products = this.getProducts();
 
 
-        let pushProducts = false; //if 'false' = product is deleted, if true = product is added
+        let pushProduct = false; //if 'false' = product is deleted, if true = product is added
 
         //checks if the id (product ID) provided as a parameter already exists in the products array. The indexOf method returns the index of the first occurrence of the id in the array, or -1 if it doesn't exist:
         const index = products.indexOf(id);
@@ -40,20 +40,20 @@ class LocalStorageUtil {
         if (index === -1) {
             products.push(id);
 
-            pushProducts = true;
+            pushProduct = true;
 
         } else {
             /*    If index is not -1 (meaning the id is already in the array), it removes the id from the array using products.splice(index, 1):  */
             products.splice(index, 1);
         }
 
-        products.push(id);
+        //products.push(id);
 
         /* Update localStorage: the updated products array is converted to a JSON string using JSON.stringify() and stored in localStorage under the key specified by this.keyName, which is "products". This ensures that the changes are saved and can be retrieved later: */
         localStorage.setItem(this.keyName, JSON.stringify(products));
 
         return {
-            pushProducts, //pushProducts: pushProducts,
+            pushProduct, //pushProducts: pushProducts,
             products, //products: products
         }
     }

@@ -7,14 +7,16 @@ class Products {
 
   handelSetLocationStorage(element, id) {
     //console.log(element, id);
-    const { pushProducts, products } = localStorageUtil.putProducts(id);
-    if (pushProducts) {
+    const { pushProduct, products } = localStorageUtil.putProducts(id);
+    if (pushProduct) {
       element.classList.add(this.classNameActive);
       element.innerHTML = this.labelRemove;
   } else {
     element.classList.remove(this.classNameActive);
     element.innerHTML = this.labelAdd;
   }
+
+  headerPage.render(products.length);
 }
 
   render() {
