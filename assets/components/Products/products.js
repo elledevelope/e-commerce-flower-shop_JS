@@ -5,6 +5,12 @@ class Products {
     this.labelRemove = 'Supprimer';
   }
 
+  handelSetLocationStorage(){
+    console.log('ok');
+
+  }
+
+
   render() {
     const ProductsStore = localStorageUtil.getProducts();
     let htmlCatalog = "";
@@ -32,7 +38,7 @@ class Products {
               "fr-FR",
               { style: "currency", currency: "EUR" }
             )}</span>
-            <button class="products-element__btn${activeClass}">${activeText}</button>
+            <button class="products-element__btn${activeClass}" onclick="productsPage.handelSetLocationStorage();">${activeText}</button>
             </li>
             `;
     });
