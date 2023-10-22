@@ -1,4 +1,10 @@
 class Products {
+  constructor() {
+    this.classNameActive = ' products-element__btn_active';
+    this.labelAdd = 'Acheter';
+    this.labelRemove = 'Supprimer';
+  }
+
   render() {
     const ProductsStore = localStorageUtil.getProducts();
     let htmlCatalog = "";
@@ -12,10 +18,10 @@ class Products {
 
       //function to change text on the buttons depending on the condition if a products is present or not in the web browers Local Storage:
       if (ProductsStore.indexOf(id) === -1) {
-        activeText = 'Acheter';
+        activeText = this.labelAdd;
       } else {
-        activeText = 'Supprimer';
-        activeClass = ' products-element__btn_active';
+        activeText = this.labelRemove;
+        activeClass = ' ' + this.classNameActive;
       }
 
       htmlCatalog += `
