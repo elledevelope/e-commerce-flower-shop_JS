@@ -12,6 +12,8 @@
   align-items: center;
   margin-left: auto;
   padding-right: var(--spacing-small);
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .header-counter img {
