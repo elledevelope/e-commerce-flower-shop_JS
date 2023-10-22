@@ -1,15 +1,21 @@
 class Products {
   constructor() {
-    this.classNameActive = ' products-element__btn_active';
+    this.classNameActive = 'products-element__btn_active';
     this.labelAdd = 'Acheter';
     this.labelRemove = 'Supprimer';
   }
 
-  handelSetLocationStorage(){
-    console.log('ok');
-
+  handelSetLocationStorage(element, id) {
+    //console.log(element, id);
+    const { pushProducts, products } = localStorageUtil.putProducts(id);
+    if (pushProducts) {
+      element.classList.add(this.classNameActive);
+      element.innerHTML = this.labelRemove;
+  } else {
+    element.classList.remove(this.classNameActive);
+    element.innerHTML = this.labelAdd;
   }
-
+}
 
   render() {
     const ProductsStore = localStorageUtil.getProducts();
@@ -19,15 +25,15 @@ class Products {
       //console.log(id, name, price, img);
 
       //variables for active button and to change text on the buttons when product is in shopping cart:
-      let activeClass = '';
-      let activeText = '';
+      let activeClass = "";
+      let activeText = "";
 
       //function to change text on the buttons depending on the condition if a products is present or not in the web browers Local Storage:
       if (ProductsStore.indexOf(id) === -1) {
         activeText = this.labelAdd;
       } else {
         activeText = this.labelRemove;
-        activeClass = ' ' + this.classNameActive;
+        activeClass = " " + this.classNameActive;
       }
 
       htmlCatalog += `
@@ -38,7 +44,7 @@ class Products {
               "fr-FR",
               { style: "currency", currency: "EUR" }
             )}</span>
-            <button class="products-element__btn${activeClass}" onclick="productsPage.handelSetLocationStorage();">${activeText}</button>
+            <button class="products-element__btn${activeClass}" onclick="productsPage.handelSetLocationStorage(this, '${id}');">${activeText}</button>
             </li>
             `;
     });
